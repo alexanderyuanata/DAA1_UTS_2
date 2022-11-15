@@ -21,3 +21,13 @@ Release
 *.vbproj.user
 ipch
 *sdf
+*.vsidx
+*.db
+*.db-shm
+*.vsidx
+*.opendb
+.vs/UTSDAA1/v17/Browse.VC.opendb
+.vs/UTSDAA1/FileContentIndex/ac09a9ba-e920-427f-81dc-49d2983cceac.vsidx
+.vs/UTSDAA1/v17/Browse.VC.db
+.vs/UTSDAA1/v17/Browse.VC.db-shm
+.vs/UTSDAA1/v17/Browse.VC.opendb
