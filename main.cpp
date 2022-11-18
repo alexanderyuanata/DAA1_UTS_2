@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <cstdlib>
+#include <vector>
 
 using namespace std;
 
@@ -70,13 +71,78 @@ data_dinamis* createLinkedListCopy(data_dinamis* head) {
         //copy terakhir adalah hasil copy yang baru ini
         lastcopy = newcopy;
     }
-    
+
     return origin;
 }
 
 
 void statis() {
+    int opsiStatis, jumlah, n;
+    vector<data_statis>barang(20);
 
+    menu:
+    system("cls");
+    cout<<"Menu Data Statis :";
+    cout<<"\n1. Input Data";
+    cout<<"\n2. Tampilkan Data";
+    cout<<"\n3. Update Data";
+    cout<<"\n4. Delete Data";
+    cout<<"\n5. Back\n>> ";
+    cin>>opsiStatis;
+
+    switch (opsiStatis) {
+                case 1: {
+                    cout<<"\nMasukkan jumlah data yang akan di-input : ";cin>>jumlah;
+
+                    for (int i=0;i<jumlah;i++)
+                    {
+                        cout<<"\nBARANG "<<i+1;
+                        cout<<"\nNama barang : ";cin>>barang[i].nama;
+                        cout<<"Stok barang : ";cin>>barang[i].stok;
+                        cout<<"Harga barang : ";cin>>barang[i].harga;
+                        cout<<"Unit satuan : ";cin>>barang[i].satuan;
+                    }
+                    system("pause");
+                    goto menu;
+                }
+
+                case 2: {
+                    for (int i=0;i<jumlah;i++)
+                    {
+                        cout<<"\nBARANG "<<i+1;
+                        cout<<"\nNama barang : "<<barang[i].nama;
+                        cout<<"\nStok barang : "<<barang[i].stok;
+                        cout<<"\nHarga barang : "<<barang[i].harga;
+                        cout<<"\nUnit satuan : "<<barang[i].satuan;
+                        cout<<endl;
+                    }
+                    system("pause");
+                    goto menu;
+                }
+
+                case 3: {
+                    system("pause");
+                    goto menu;
+                }
+
+                case 4: {
+                    cout<<"Pilih data keberapa yang akan di-delete : ";cin>>n;
+                    barang.erase(barang.begin()+(n-1));
+                    system("pause");
+                    goto menu;
+                }
+
+                case 5: {
+                    break;
+                }
+
+                default: {
+                    cout << "Opsi tidak ada! ";
+                    system("pause");
+                    goto menu;
+                }
+        }
+    system("cls");
 }
 
 void dinamis() {
