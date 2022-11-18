@@ -124,7 +124,7 @@ void statis() {
                     cout<<"\nPilih data keberapa yang akan di-update : ";cin>>n;
                     cout<<"\nUPDATE BARANG "<<n;
                     cout<<"\nNama barang : ";cin>>barang.at(n-1).nama;
-                    cout<<"tok barang : ";cin>>barang.at(n-1).stok;
+                    cout<<"Stok barang : ";cin>>barang.at(n-1).stok;
                     cout<<"Harga barang : ";cin>>barang.at(n-1).harga;
                     cout<<"Unit satuan : ";cin>>barang.at(n-1).satuan;
                     system("pause");
