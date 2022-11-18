@@ -8,6 +8,7 @@ using namespace std;
 //struktur data yang dipakai
 struct data_statis {
     string nama{};              //nama barang
+    unsigned int id{};          //id barang
     unsigned int stok{};        //stok barang yang tersisa
     unsigned long int harga{};  //harga barang
     string satuan{};            //unit satuan barang
@@ -98,6 +99,7 @@ void statis() {
                     {
                         cout<<"\nBARANG "<<i+1;
                         cout<<"\nNama barang : ";cin>>barang[i].nama;
+                        cout<<"ID barang : ";cin>>barang[i].id;
                         cout<<"Stok barang : ";cin>>barang[i].stok;
                         cout<<"Harga barang : ";cin>>barang[i].harga;
                         cout<<"Unit satuan : ";cin>>barang[i].satuan;
@@ -111,6 +113,7 @@ void statis() {
                     {
                         cout<<"\nBARANG "<<i+1;
                         cout<<"\nNama barang : "<<barang[i].nama;
+                        cout<<"\nID barang : "<<barang[i].id;
                         cout<<"\nStok barang : "<<barang[i].stok;
                         cout<<"\nHarga barang : "<<barang[i].harga;
                         cout<<"\nUnit satuan : "<<barang[i].satuan;
@@ -124,6 +127,7 @@ void statis() {
                     cout<<"\nPilih data keberapa yang akan di-update : ";cin>>n;
                     cout<<"\nUPDATE BARANG "<<n;
                     cout<<"\nNama barang : ";cin>>barang.at(n-1).nama;
+                    cout<<"ID barang : ";cin>>barang.at(n-1).id;
                     cout<<"Stok barang : ";cin>>barang.at(n-1).stok;
                     cout<<"Harga barang : ";cin>>barang.at(n-1).harga;
                     cout<<"Unit satuan : ";cin>>barang.at(n-1).satuan;
