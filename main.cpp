@@ -121,12 +121,18 @@ void statis() {
                 }
 
                 case 3: {
+                    cout<<"\nPilih data keberapa yang akan di-update : ";cin>>n;
+                    cout<<"\nUPDATE BARANG "<<n;
+                    cout<<"\nNama barang : ";cin>>barang.at(n-1).nama;
+                    cout<<"tok barang : ";cin>>barang.at(n-1).stok;
+                    cout<<"Harga barang : ";cin>>barang.at(n-1).harga;
+                    cout<<"Unit satuan : ";cin>>barang.at(n-1).satuan;
                     system("pause");
                     goto menu;
                 }
 
                 case 4: {
-                    cout<<"Pilih data keberapa yang akan di-delete : ";cin>>n;
+                    cout<<"\nPilih data keberapa yang akan di-delete : ";cin>>n;
                     barang.erase(barang.begin()+(n-1));
                     system("pause");
                     goto menu;
