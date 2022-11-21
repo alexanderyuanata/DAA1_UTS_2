@@ -96,13 +96,14 @@ void statis() {
         case 1: {
             for (int i = 0; i < 3; i++)
             {
+                cin.ignore();
                 cout << "\nBARANG " << i + 1;
-                cout << "\nNama barang : "; cin >> barang[i].nama;
+                cout << "\nNama barang : "; getline(cin, barang[i].nama);
                 cout << "ID barang : "; cin >> barang[i].id;
                 cout << "Stok barang : "; cin >> barang[i].stok;
                 cout << "Harga barang : "; cin >> barang[i].harga;
                 cout << "Unit satuan : "; cin >> barang[i].satuan;
-                barang[i].valid=true;
+                barang[i].valid = true;
             }
             system("pause");
             break;
@@ -129,18 +130,18 @@ void statis() {
         case 3: {
             cout << "\nPilih data keberapa yang akan di-update : "; cin >> n;
             cout << "\nUPDATE BARANG " << n;
-            cout << "\nNama barang : "; cin >> barang[n-1].nama;
-            cout << "ID barang : "; cin >> barang[n-1].id;
-            cout << "Stok barang : "; cin >> barang[n-1].stok;
-            cout << "Harga barang : "; cin >> barang[n-1].harga;
-            cout << "Unit satuan : "; cin >> barang[n-1].satuan;
+            cout << "\nNama barang : "; cin >> barang[n - 1].nama;
+            cout << "ID barang : "; cin >> barang[n - 1].id;
+            cout << "Stok barang : "; cin >> barang[n - 1].stok;
+            cout << "Harga barang : "; cin >> barang[n - 1].harga;
+            cout << "Unit satuan : "; cin >> barang[n - 1].satuan;
             system("pause");
             break;
         }
 
         case 4: {
             cout << "\nPilih data keberapa yang akan di-delete : "; cin >> n;
-            barang[n-1].valid = false;
+            barang[n - 1].valid = false;
             system("pause");
             break;
         }
@@ -157,7 +158,7 @@ void statis() {
         }
         }
     }
-    restart_static:
+restart_static:
     system("cls");
 }
 
