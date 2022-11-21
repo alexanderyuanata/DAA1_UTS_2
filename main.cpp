@@ -76,82 +76,85 @@ data_dinamis* createLinkedListCopy(data_dinamis* head) {
     return origin;
 }
 
-
+//data statis
 void statis() {
     int opsiStatis, jumlah, n;
     vector<data_statis>barang(20);
 
-    menu:
-    system("cls");
-    cout<<"Menu Data Statis :";
-    cout<<"\n1. Input Data";
-    cout<<"\n2. Tampilkan Data";
-    cout<<"\n3. Update Data";
-    cout<<"\n4. Delete Data";
-    cout<<"\n5. Back\n>> ";
-    cin>>opsiStatis;
+    while (true) {
+        system("cls");
+        cout << "Menu Data Statis :";
+        cout << "\n1. Input Data";
+        cout << "\n2. Tampilkan Data";
+        cout << "\n3. Update Data";
+        cout << "\n4. Delete Data";
+        cout << "\n5. Back\n>> ";
+        cin >> opsiStatis;
 
-    switch (opsiStatis) {
-                case 1: {
-                    cout<<"\nMasukkan jumlah data yang akan di-input : ";cin>>jumlah;
+        switch (opsiStatis) {
+        case 1: {
+            cout << "\nMasukkan jumlah data yang akan di-input : "; cin >> jumlah;
 
-                    for (int i=0;i<jumlah;i++)
-                    {
-                        cout<<"\nBARANG "<<i+1;
-                        cout<<"\nNama barang : ";cin>>barang[i].nama;
-                        cout<<"ID barang : ";cin>>barang[i].id;
-                        cout<<"Stok barang : ";cin>>barang[i].stok;
-                        cout<<"Harga barang : ";cin>>barang[i].harga;
-                        cout<<"Unit satuan : ";cin>>barang[i].satuan;
-                    }
-                    system("pause");
-                    goto menu;
-                }
-
-                case 2: {
-                    for (int i=0;i<jumlah;i++)
-                    {
-                        cout<<"\nBARANG "<<i+1;
-                        cout<<"\nNama barang : "<<barang[i].nama;
-                        cout<<"\nID barang : "<<barang[i].id;
-                        cout<<"\nStok barang : "<<barang[i].stok;
-                        cout<<"\nHarga barang : "<<barang[i].harga;
-                        cout<<"\nUnit satuan : "<<barang[i].satuan;
-                        cout<<endl;
-                    }
-                    system("pause");
-                    goto menu;
-                }
-
-                case 3: {
-                    cout<<"\nPilih data keberapa yang akan di-update : ";cin>>n;
-                    cout<<"\nUPDATE BARANG "<<n;
-                    cout<<"\nNama barang : ";cin>>barang.at(n-1).nama;
-                    cout<<"ID barang : ";cin>>barang.at(n-1).id;
-                    cout<<"Stok barang : ";cin>>barang.at(n-1).stok;
-                    cout<<"Harga barang : ";cin>>barang.at(n-1).harga;
-                    cout<<"Unit satuan : ";cin>>barang.at(n-1).satuan;
-                    system("pause");
-                    goto menu;
-                }
-
-                case 4: {
-                    cout<<"\nPilih data keberapa yang akan di-delete : ";cin>>n;
-                    barang.erase(barang.begin()+(n-1));
-                    system("pause");
-                    goto menu;
-                }
-
-                case 5: {
-                    break;
-                }
-
-                default: {
-                    cout << "Opsi tidak ada! ";
-                    system("pause");
-                    goto menu;
-                }
+            for (int i = 0; i < jumlah; i++)
+            {
+                cout << "\nBARANG " << i + 1;
+                cout << "\nNama barang : "; cin >> barang[i].nama;
+                cout << "ID barang : "; cin >> barang[i].id;
+                cout << "Stok barang : "; cin >> barang[i].stok;
+                cout << "Harga barang : "; cin >> barang[i].harga;
+                cout << "Unit satuan : "; cin >> barang[i].satuan;
+            }
+            system("pause");
+            break;
         }
+
+        case 2: {
+            for (int i = 0; i < jumlah; i++)
+            {
+                cout << "\nBARANG " << i + 1;
+                cout << "\nNama barang : " << barang[i].nama;
+                cout << "\nID barang : " << barang[i].id;
+                cout << "\nStok barang : " << barang[i].stok;
+                cout << "\nHarga barang : " << barang[i].harga;
+                cout << "\nUnit satuan : " << barang[i].satuan;
+                cout << endl;
+            }
+            system("pause");
+            break;
+        }
+
+        case 3: {
+            cout << "\nPilih data keberapa yang akan di-update : "; cin >> n;
+            cout << "\nUPDATE BARANG " << n;
+            cout << "\nNama barang : "; cin >> barang.at(n - 1).nama;
+            cout << "ID barang : "; cin >> barang.at(n - 1).id;
+            cout << "Stok barang : "; cin >> barang.at(n - 1).stok;
+            cout << "Harga barang : "; cin >> barang.at(n - 1).harga;
+            cout << "Unit satuan : "; cin >> barang.at(n - 1).satuan;
+            system("pause");
+            break;
+        }
+
+        case 4: {
+            cout << "\nPilih data keberapa yang akan di-delete : "; cin >> n;
+            barang.erase(barang.begin() + (n - 1));
+            system("pause");
+            break;
+        }
+
+        case 5: {
+            goto restart_static;
+            break;
+        }
+
+        default: {
+            cout << "Opsi tidak ada! ";
+            system("pause");
+            break;
+        }
+        }
+    }
+    restart_static:
     system("cls");
 }
 
@@ -190,34 +193,34 @@ data_dinamis kepala{
 int main()
 {
     while (true) {
-            cout << "Selamat datang di Microhard Binbows Excelsior!\n"
-                 << "1. Data Statis\n"
-                 << "2. Data Dinamis\n"
-                 << "3. Exit\n>> ";
-            int x;
-            cin >> x;
+        cout << "Selamat datang di Microhard Binbows Excelsior!\n"
+            << "1. Data Statis\n"
+            << "2. Data Dinamis\n"
+            << "3. Exit\n>> ";
+        int x;
+        cin >> x;
 
-            switch (x) {
-                case 1: {
-                    statis();
-                    break;
-                }
+        switch (x) {
+        case 1: {
+            statis();
+            break;
+        }
 
-                case 2: {
-                    dinamis();
-                    break;
-                }
+        case 2: {
+            dinamis();
+            break;
+        }
 
-                case 3: {
-                    exit(0);
-                    break;
-                }
+        case 3: {
+            exit(0);
+            break;
+        }
 
-                default: {
-                    cout << "Opsi tidak ada! ";
-                    system("pause");
-                    break;
-                }
+        default: {
+            cout << "Opsi tidak ada! ";
+            system("pause");
+            break;
+        }
         }
         system("CLS");
     }
