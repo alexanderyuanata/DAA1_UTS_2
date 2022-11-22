@@ -97,6 +97,12 @@ void statis() {
             cout << "\nMasukkan jumlah data yang akan di-input : "; cin >> a;
             jumlah+=a;
 
+            if (jumlah == 21) {
+                cout<<"Maksimum data sebanyak 20!\n";
+                system("pause");
+                break;
+            }
+
             if (input == true) {
                 for (int i = data; i < jumlah; i++)
                 {
@@ -121,7 +127,9 @@ void statis() {
                     cout << "Stok barang : "; cin >> barang[i].stok;
                     cout << "Harga barang : "; cin >> barang[i].harga;
                     cout << "Unit satuan : "; cin >> barang[i].satuan;
-                    data+=i;
+                    if (i > 0) {
+                        data+=1;
+                    }
                 }
                 input = true;
             }
