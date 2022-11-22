@@ -12,7 +12,6 @@ struct data_statis {
     unsigned int stok{};        //stok barang yang tersisa
     unsigned long int harga{};  //harga barang
     string satuan{};            //unit satuan barang
-    bool valid{};
 };
 
 struct data_dinamis {
@@ -79,8 +78,9 @@ data_dinamis* createLinkedListCopy(data_dinamis* head) {
 
 //data statis
 void statis() {
-    int opsiStatis, n;
-    vector<data_statis>barang(20);
+    int opsiStatis, a, n, jumlah=0, data=1;
+    bool input{};
+    data_statis barang[20];
 
     while (true) {
         system("cls");
@@ -94,34 +94,51 @@ void statis() {
 
         switch (opsiStatis) {
         case 1: {
-            for (int i = 0; i < 3; i++)
-            {
-                cin.ignore();
-                cout << "\nBARANG " << i + 1;
-                cout << "\nNama barang : "; getline(cin, barang[i].nama);
-                cout << "ID barang : "; cin >> barang[i].id;
-                cout << "Stok barang : "; cin >> barang[i].stok;
-                cout << "Harga barang : "; cin >> barang[i].harga;
-                cout << "Unit satuan : "; cin >> barang[i].satuan;
-                barang[i].valid = true;
+            cout << "\nMasukkan jumlah data yang akan di-input : "; cin >> a;
+            jumlah+=a;
+
+            if (input == true) {
+                for (int i = data; i < jumlah; i++)
+                {
+                    cin.ignore();
+                    cout << "\nBARANG " << i + 1;
+                    cout << "\nNama barang : "; getline(cin, barang[i].nama);
+                    cout << "ID barang : "; cin >> barang[i].id;
+                    cout << "Stok barang : "; cin >> barang[i].stok;
+                    cout << "Harga barang : "; cin >> barang[i].harga;
+                    cout << "Unit satuan : "; cin >> barang[i].satuan;
+                    data+=1;
+                }
+            }
+
+            else {
+                for (int i = 0; i < jumlah; i++)
+                {
+                    cin.ignore();
+                    cout << "\nBARANG " << i + 1;
+                    cout << "\nNama barang : "; getline(cin, barang[i].nama);
+                    cout << "ID barang : "; cin >> barang[i].id;
+                    cout << "Stok barang : "; cin >> barang[i].stok;
+                    cout << "Harga barang : "; cin >> barang[i].harga;
+                    cout << "Unit satuan : "; cin >> barang[i].satuan;
+                    data+=i;
+                }
+                input = true;
             }
             system("pause");
             break;
         }
 
         case 2: {
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < jumlah; i++)
             {
-                if (barang[i].valid == true)
-                {
-                    cout << "\nBARANG " << i + 1;
-                    cout << "\nNama barang : " << barang[i].nama;
-                    cout << "\nID barang : " << barang[i].id;
-                    cout << "\nStok barang : " << barang[i].stok;
-                    cout << "\nHarga barang : " << barang[i].harga;
-                    cout << "\nUnit satuan : " << barang[i].satuan;
-                    cout << endl;
-                }
+                cout << "\nBARANG " << i + 1;
+                cout << "\nNama barang : " << barang[i].nama;
+                cout << "\nID barang : " << barang[i].id;
+                cout << "\nStok barang : " << barang[i].stok;
+                cout << "\nHarga barang : " << barang[i].harga;
+                cout << "\nUnit satuan : " << barang[i].satuan;
+                cout << endl;
             }
             system("pause");
             break;
@@ -129,8 +146,9 @@ void statis() {
 
         case 3: {
             cout << "\nPilih data keberapa yang akan di-update : "; cin >> n;
+            cin.ignore();
             cout << "\nUPDATE BARANG " << n;
-            cout << "\nNama barang : "; cin >> barang[n - 1].nama;
+            cout << "\nNama barang : "; getline(cin, barang[n-1].nama);
             cout << "ID barang : "; cin >> barang[n - 1].id;
             cout << "Stok barang : "; cin >> barang[n - 1].stok;
             cout << "Harga barang : "; cin >> barang[n - 1].harga;
@@ -141,7 +159,12 @@ void statis() {
 
         case 4: {
             cout << "\nPilih data keberapa yang akan di-delete : "; cin >> n;
-            barang[n - 1].valid = false;
+            for (int i = n-1; i < jumlah; i++)
+            {
+                barang[i] = barang[i+1];
+            }
+            data-=1;
+            jumlah-=1;
             system("pause");
             break;
         }
