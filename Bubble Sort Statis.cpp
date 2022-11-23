@@ -98,7 +98,7 @@ int getlistLength(data_dinamis** head) {
         count++;
         data_todisplay = (*data_todisplay).ptr;
     }
-        
+
     return count;
 }
 
@@ -326,12 +326,13 @@ void statis() {
         switch (opsiStatis) {
         case 1: {
             cout << "\nMasukkan jumlah data yang akan di-input : "; cin >> a;
-            jumlah += a;
-
-            if (jumlah == 21) {
+            if (jumlah+a > 20) {
                 cout << "Maksimum data sebanyak 20!\n";
                 system("pause");
                 break;
+            }
+            else {
+               jumlah += a;
             }
 
             if (input == true) {
