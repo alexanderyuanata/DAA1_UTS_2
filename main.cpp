@@ -142,7 +142,6 @@ void displayNode(data_dinamis node) {
             << "Unit satuan  : " << node.satuan << "\n\n";
 }
 
-
 //display linked list content
 void displayList(data_dinamis** head) {
     //if list is empty
@@ -234,6 +233,55 @@ void deleteNode(data_dinamis** head) {
         }
     }
 }
+
+//mengembalikan alamat node pada index tertentu
+data_dinamis* getNodeatIndex(data_dinamis** head, int index) {
+    int i{ 0 };
+    data_dinamis* current = *head;
+    while (current != nullptr) {
+        if (i == index) {
+            return current;
+        }
+        i++;
+        current = (*current).ptr;
+    }
+}
+
+void copypasteNode(data_dinamis* copy, data_dinamis* paste) {
+    (*paste).nama = (*copy).nama;
+    (*paste).id = (*copy).id;
+    (*paste).stok = (*copy).stok;
+    (*paste).harga = (*copy).harga;
+    (*paste).satuan = (*copy).satuan;
+}
+
+//swap node
+void swapNode(data_dinamis* m, data_dinamis* n) {
+    data_dinamis* temp = createNodeCopy(m);
+    copypasteNode(n, m);
+    copypasteNode(temp, n);
+
+    delete temp;
+}
+
+//sorting linked list
+void sortList(data_dinamis** head) {
+    data_dinamis* current = *head;
+
+    //selection sort by price
+    int i = 1;
+    while (i < getlistLength(head)) {
+        int j = i;
+        while (j > 0 && ( (*getNodeatIndex(head, j)).harga < (*getNodeatIndex(head, j-1)).harga) ) {
+            swapNode(getNodeatIndex(head,j), getNodeatIndex(head, j-1));
+            j--;
+        }
+        i++;
+    }
+
+}
+
+
 
 //data statis
 void statis() {
@@ -354,7 +402,6 @@ restart_static:
 
 void dinamis() {
     data_dinamis* head = nullptr;
-    data_dinamis* tail = head;
     bool flag = true;
 
     while (flag) {
@@ -381,6 +428,7 @@ void dinamis() {
             }
 
             case 2: {
+                sortList(&head);
                 displayList(&head);
                 break;
             }
@@ -409,34 +457,6 @@ void dinamis() {
         system("pause");
     }
 }
-
-//jangan disentuh, ini buat testing linked list aja, nanti dihapus
-data_dinamis ekor{
-    "Susu Beruang",
-    3,
-    30,
-    11000,
-    "Kaleng",
-    nullptr
-};
-
-data_dinamis badan{
-    "Sprite",
-    2,
-    20,
-    4000,
-    "Botol",
-    &ekor
-};
-
-data_dinamis kepala{
-    "Coca Cola",
-    1,
-    45,
-    5000,
-    "Botol",
-    &badan
-};
 
 int main()
 {
