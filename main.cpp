@@ -266,19 +266,18 @@ void swapNode(data_dinamis* m, data_dinamis* n) {
 
 //sorting linked list
 void sortList(data_dinamis** head) {
-    data_dinamis* current = *head;
-
     //selection sort by price
-    int i = 1;
-    while (i < getlistLength(head)) {
-        int j = i;
-        while (j > 0 && ( (*getNodeatIndex(head, j)).harga < (*getNodeatIndex(head, j-1)).harga) ) {
-            swapNode(getNodeatIndex(head,j), getNodeatIndex(head, j-1));
-            j--;
+    for (int i = 0; i < (getlistLength(head) - 1); i++) {
+        int max = i;
+        for (int j = i+1; j < (getlistLength(head)); j++) {
+            if ((*getNodeatIndex(head, j)).harga > (*getNodeatIndex(head, max)).harga) {
+                max = j;
+            }
         }
-        i++;
+        if (max != i) {
+            swapNode(getNodeatIndex(head, i), getNodeatIndex(head, max));
+        }
     }
-
 }
 
 
