@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 #include <cstdlib>
-#include <vector>
 
 using namespace std;
 
@@ -99,7 +98,7 @@ int getlistLength(data_dinamis** head) {
         count++;
         data_todisplay = (*data_todisplay).ptr;
     }
-        
+
     return count;
 }
 
@@ -109,11 +108,11 @@ void inputDinamis(data_dinamis** head) {
     if (*head == nullptr) {
         *head = newNode();
         cin.ignore();
-        cout << "Nama barang  : "; getline(cin, (** head).nama);
-        cout << "ID barang    : "; cin >> (** head).id;
-        cout << "Stok barang  : "; cin >> (** head).stok;
-        cout << "Harga barang : "; cin >> (** head).harga;
-        cout << "Unit satuan  : "; cin >> (** head).satuan;
+        cout << "Nama barang  : "; getline(cin, (**head).nama);
+        cout << "ID barang    : "; cin >> (**head).id;
+        cout << "Stok barang  : "; cin >> (**head).stok;
+        cout << "Harga barang : "; cin >> (**head).harga;
+        cout << "Unit satuan  : "; cin >> (**head).satuan;
     }
     //if not, then traverse the list until the head and append a new node
     else {
@@ -135,11 +134,11 @@ void inputDinamis(data_dinamis** head) {
 
 //display node contents
 void displayNode(data_dinamis node) {
-    cout    << "Nama barang  : " << node.nama << '\n'
-            << "ID barang    : " << node.id << '\n'
-            << "Stok barang  : " << node.stok << '\n'
-            << "Harga barang : " << node.harga << '\n'
-            << "Unit satuan  : " << node.satuan << "\n\n";
+    cout << "Nama barang  : " << node.nama << '\n'
+        << "ID barang    : " << node.id << '\n'
+        << "Stok barang  : " << node.stok << '\n'
+        << "Harga barang : " << node.harga << '\n'
+        << "Unit satuan  : " << node.satuan << "\n\n";
 }
 
 //display linked list content
@@ -152,19 +151,19 @@ void displayList(data_dinamis** head) {
     else {
         //start from head
         data_dinamis* data_todisplay = *head;
-        int i{0};
+        int i{ 0 };
         while (data_todisplay != nullptr) {
             //iterate count by one, display current data and move it forward
             cout << "Data #" << ++i << '\n';
             displayNode(*data_todisplay);
-            data_todisplay = (* data_todisplay).ptr;
+            data_todisplay = (*data_todisplay).ptr;
         }
     }
 }
 
 //update linked list
 void updateList(data_dinamis** head) {
-    if (*head == nullptr){
+    if (*head == nullptr) {
         cout << "Tidak ada data yang terdeteksi dalam linked list! ";
     }
     else {
@@ -215,10 +214,16 @@ void deleteNode(data_dinamis** head) {
 
         int i{ 0 };
         data_dinamis* data_todelete = *head;
+        //if the data to be deleted is the head, delete it and make the next node the head
+        if (index == 1) {
+            *head = data_todelete->ptr;
+            delete data_todelete;
+            return;
+        }
         //traverse the list until the node before the index
         while (data_todelete != nullptr) {
             i++;
-            if (i == (index-1)) {
+            if (i == (index - 1)) {
                 //determine the data to delete, previous data and upcoming data
                 data_dinamis* data_prev = data_todelete;
                 data_todelete = (*data_prev).ptr;
@@ -269,7 +274,7 @@ void sortList(data_dinamis** head) {
     //selection sort by price
     for (int i = 0; i < (getlistLength(head) - 1); i++) {
         int max = i;
-        for (int j = i+1; j < (getlistLength(head)); j++) {
+        for (int j = i + 1; j < (getlistLength(head)); j++) {
             if ((*getNodeatIndex(head, j)).harga > (*getNodeatIndex(head, max)).harga) {
                 max = j;
             }
@@ -280,7 +285,33 @@ void sortList(data_dinamis** head) {
     }
 }
 
+//copy array 1 to other
+void copyarray(data_statis* m, data_statis* n)
+{
+    n->nama = m->nama;
+    n->id = m->id;
+    n->stok = m->stok;
+    n->harga = m->harga;
+    n->satuan = m->satuan;
+}
 
+//bubble sort statis
+void sort_statis(data_statis sort[], int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n - 1; j++)
+        {
+            if (sort[j].harga > sort[j + 1].harga)
+            {
+                data_statis temp;
+                copyarray(&sort[j + 1], &temp);
+                copyarray(&sort[j], &sort[j + 1]);
+                copyarray(&temp, &sort[j]);
+            }
+        }
+    }
+}
 
 //data statis
 void statis() {
@@ -301,12 +332,13 @@ void statis() {
         switch (opsiStatis) {
         case 1: {
             cout << "\nMasukkan jumlah data yang akan di-input : "; cin >> a;
-            jumlah += a;
-
-            if (jumlah == 21) {
+            if (jumlah + a > 20) {
                 cout << "Maksimum data sebanyak 20!\n";
                 system("pause");
                 break;
+            }
+            else {
+                jumlah += a;
             }
 
             if (input == true) {
@@ -344,6 +376,7 @@ void statis() {
         }
 
         case 2: {
+            sort_statis(barang, jumlah);
             for (int i = 0; i < jumlah; i++)
             {
                 cout << "\nBARANG " << i + 1;
@@ -405,52 +438,52 @@ void dinamis() {
 
     while (flag) {
         system("cls");
-        cout    << "Panjang linked list sekarang: " << getlistLength(&head) << '\n'
-                << "1. Input data\n"
-                << "2. Tampilkan data\n"
-                << "3. Update data\n"
-                << "4. Delete data\n"
-                << "5. Back\n"
-                << ">> ";
+        cout << "Panjang linked list sekarang: " << getlistLength(&head) << '\n'
+            << "1. Input data\n"
+            << "2. Tampilkan data\n"
+            << "3. Update data\n"
+            << "4. Delete data\n"
+            << "5. Back\n"
+            << ">> ";
         int select{};
         cin >> select;
 
         switch (select) {
-            case 1: {
-                cout << "Berapa banyak data yang ingin dimasukkan? "; int data_count{}; cin >> data_count;
-                for (int i = 0; i < data_count; i++) {
-                    cout << "\nData #" << i+1 << endl;
-                    inputDinamis(&head);
-                    cout << "\n\n";
-                }
-                break;
+        case 1: {
+            cout << "Berapa banyak data yang ingin dimasukkan? "; int data_count{}; cin >> data_count;
+            for (int i = 0; i < data_count; i++) {
+                cout << "\nData #" << i + 1 << endl;
+                inputDinamis(&head);
+                cout << "\n\n";
             }
+            break;
+        }
 
-            case 2: {
-                sortList(&head);
-                displayList(&head);
-                break;
-            }
+        case 2: {
+            sortList(&head);
+            displayList(&head);
+            break;
+        }
 
-            case 3: {
-                updateList(&head);
-                break;
-            }
+        case 3: {
+            updateList(&head);
+            break;
+        }
 
-            case 4: {
-                deleteNode(&head);
-                break;
-            }
+        case 4: {
+            deleteNode(&head);
+            break;
+        }
 
-            case 5: {
-                flag = false;
-                break;
-            }
+        case 5: {
+            flag = false;
+            break;
+        }
 
-            default: {
-                cout << "Opsi tidak ada! ";
-                break;
-            }
+        default: {
+            cout << "Opsi tidak ada! ";
+            break;
+        }
 
         }
         system("pause");
