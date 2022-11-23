@@ -250,6 +250,7 @@ data_dinamis* getNodeatIndex(data_dinamis** head, int index) {
         i++;
         current = (*current).ptr;
     }
+    return nullptr;
 }
 
 void copypasteNode(data_dinamis* copy, data_dinamis* paste) {
