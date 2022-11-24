@@ -141,25 +141,6 @@ void displayNode(data_dinamis node) {
         << "Unit satuan  : " << node.satuan << "\n\n";
 }
 
-//display linked list content
-void displayList(data_dinamis** head) {
-    //if list is empty
-    if (*head == nullptr) {
-        cout << "Tidak ada data yang tersedia! ";
-    }
-    //if not
-    else {
-        //start from head
-        data_dinamis* data_todisplay = *head;
-        int i{ 0 };
-        while (data_todisplay != nullptr) {
-            //iterate count by one, display current data and move it forward
-            cout << "Data #" << ++i << '\n';
-            displayNode(*data_todisplay);
-            data_todisplay = (*data_todisplay).ptr;
-        }
-    }
-}
 
 //update linked list
 void updateList(data_dinamis** head) {
@@ -282,6 +263,28 @@ void sortList(data_dinamis** head) {
         }
         if (max != i) {
             swapNode(getNodeatIndex(head, i), getNodeatIndex(head, max));
+        }
+    }
+}
+
+
+//display linked list content
+void displayList(data_dinamis** head) {
+	sortList(head);
+    //if list is empty
+    if (*head == nullptr) {
+        cout << "Tidak ada data yang tersedia! ";
+    }
+    //if not
+    else {
+        //start from head
+        data_dinamis* data_todisplay = *head;
+        int i{ 0 };
+        while (data_todisplay != nullptr) {
+            //iterate count by one, display current data and move it forward
+            cout << "Data #" << ++i << '\n';
+            displayNode(*data_todisplay);
+            data_todisplay = (*data_todisplay).ptr;
         }
     }
 }
@@ -433,6 +436,7 @@ restart_static:
     system("cls");
 }
 
+//data dinamis
 void dinamis() {
     data_dinamis* head = nullptr;
     bool flag = true;
@@ -461,17 +465,18 @@ void dinamis() {
         }
 
         case 2: {
-            sortList(&head);
             displayList(&head);
             break;
         }
 
         case 3: {
+        	displayList(&head);
             updateList(&head);
             break;
         }
 
         case 4: {
+        	displayList(&head);
             deleteNode(&head);
             break;
         }
