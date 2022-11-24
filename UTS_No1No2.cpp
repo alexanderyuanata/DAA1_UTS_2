@@ -367,7 +367,6 @@ void inputStatis(data_statis barang[], int *jumlah, int *data, bool *input) {
 
 //tampilkan data statis
 void displayStatis(data_statis barang[], int jumlah) {
-    bubbleSort(barang, jumlah);
     for (int i = 0; i < jumlah; i++)
     {
         cout << "\nBarang #" << i + 1;
@@ -381,9 +380,8 @@ void displayStatis(data_statis barang[], int jumlah) {
 }
 
 //update data statis
-void updateStatis(data_statis barang[], int jumlah) {
+void updateStatis(data_statis barang[]) {
     int n{};
-    displayStatis(barang, jumlah);
     cout << "\nPilih data keberapa yang akan di-update : "; cin >> n; cout << '\n';
     if (n < 1 || n > nmax) {
         cout << "Data tidak terdapat dalam data statis! ";
@@ -401,7 +399,6 @@ void updateStatis(data_statis barang[], int jumlah) {
 
 //delete data
 void deleteStatis(data_statis barang[], int* jumlah, int* data) {
-    displayStatis(barang, *jumlah);
     int n;
     cout << "\nPilih data keberapa yang akan di-delete : "; cin >> n;
     for (int i = n - 1; i < *jumlah; i++)
@@ -437,13 +434,14 @@ void statis() {
         }
 
         case 2: {
+            bubbleSort(barang, jumlah);
             displayStatis(barang, jumlah);
             system("pause");
             break;
         }
 
         case 3: {
-            updateStatis(barang, jumlah);
+            updateStatis(barang);
             system("pause");
             break;
         }
