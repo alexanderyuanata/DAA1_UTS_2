@@ -343,7 +343,7 @@ void inputStatis(data_statis barang[], int *jumlah, int *data, bool *input) {
             cout << "Stok barang  : "; cin >> barang[i].stok;
             cout << "Harga barang : "; cin >> barang[i].harga;
             cout << "Unit satuan  : "; cin >> barang[i].satuan;
-            *data += 1;
+            data += 1;
         }
     }
 
@@ -358,7 +358,7 @@ void inputStatis(data_statis barang[], int *jumlah, int *data, bool *input) {
             cout << "Harga barang : "; cin >> barang[i].harga;
             cout << "Unit satuan  : "; cin >> barang[i].satuan;
             if (i > 0) {
-                *data += 1;
+                data += 1;
             }
         }
         *input = true;
