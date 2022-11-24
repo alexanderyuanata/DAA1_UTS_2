@@ -289,7 +289,15 @@ void displayList(data_dinamis** head) {
     }
 }
 
-/*============FUNGSI STATIS==============*/
+//copy array 1 to other
+void copyarray(data_statis* m, data_statis* n)
+{
+    n->nama = m->nama;
+    n->id = m->id;
+    n->stok = m->stok;
+    n->harga = m->harga;
+    n->satuan = m->satuan;
+}
 
 //bubble sort statis
 void sort_statis(data_statis sort[], int n)
@@ -301,24 +309,9 @@ void sort_statis(data_statis sort[], int n)
             if (sort[j].harga > sort[j + 1].harga)
             {
                 data_statis temp;
-
-                temp.nama = sort[j + 1].nama;
-                temp.id = sort[j + 1].id;
-                temp.stok = sort[j + 1].stok;
-                temp.harga = sort[j + 1].harga;
-                temp.satuan = sort[j + 1].satuan;
-
-                sort[j + 1].nama = sort[j].nama;
-                sort[j + 1].id = sort[j].id;
-                sort[j + 1].stok = sort[j].stok;
-                sort[j + 1].harga = sort[j].harga;
-                sort[j + 1].satuan = sort[j].satuan;
-
-                sort[j].nama = temp.nama;
-                sort[j].id = temp.id;
-                sort[j].stok = temp.stok;
-                sort[j].harga = temp.harga;
-                sort[j].satuan = temp.satuan;
+                copyarray(&sort[j + 1], &temp);
+                copyarray(&sort[j], &sort[j + 1]);
+                copyarray(&temp, &sort[j]);
             }
         }
     }
